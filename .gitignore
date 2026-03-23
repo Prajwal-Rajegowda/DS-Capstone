@@ -1,3 +1,6 @@
 .env
 .python-version
+GENERATED_README.md
 __pycache__/
+chroma_db/
+temp_repo/

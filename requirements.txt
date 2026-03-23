@@ -1,3 +1,6 @@
-huggingface_hub==1.4.1
-protobuf==6.33.5
-python-dotenv==1.2.1
+google-genai
+python-dotenv
+chromadb
+GitPython
+langchain-text-splitters
+pydantic

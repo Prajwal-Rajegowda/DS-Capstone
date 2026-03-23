@@ -32,3 +32,10 @@ class init_models:
         models = self.gemini_client.models.list()
         for model in models:
             print(model.name)
+
+    def get_gemini_embedding(self, contents, model_name="gemini-embedding-001"):
+        response = self.gemini_client.models.embed_content(
+            model=model_name,
+            contents=contents
+        )
+        return response.embeddings[0].values
