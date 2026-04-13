@@ -8,7 +8,7 @@ def main():
     models = init_models.init_models()
 
     loader = repo_loader.RepoLoader()
-    test_repo_url = "https://github.com/abhi270502/Capstone-Project.git"
+    test_repo_url = "https://github.com/Prajwal-Rajegowda/Cafeteria"
     loader.clone_repo(test_repo_url)
     repo_files = loader.get_code_files()
 

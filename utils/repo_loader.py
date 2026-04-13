@@ -14,7 +14,7 @@ class RepoLoader:
         Repo.clone_from(repo_url, self.clone_dir)
         print("Cloning complete.")
 
-    def get_code_files(self, allowed_extensions=('.py', '.md', '.txt')):
+    def get_code_files(self, allowed_extensions=('.py', '.md', '.txt', '.java', '.cpp', '.c')):
         documents = []
         for root, _, files in os.walk(self.clone_dir):
             if '.git' in root:
@@ -23,10 +23,19 @@ class RepoLoader:
             for file in files:
                 if file.endswith(allowed_extensions):
                     file_path = os.path.join(root, file)
+                    languages = {
+                        "cpp" : "CPP",
+                        "c" : "C",
+                        "java": "JAVA",
+                        "md" : "MARKDOWN",
+                        "py": "PYTHON",
+                    }
+                    file_language = languages.get(file.split(".")[1], "DEFAULT")
                     try:
                         with open(file_path, 'r', encoding='utf-8') as f:
                             documents.append({
-                                "path": file_path, 
+                                "path": file_path,
+                                "language": file_language,
                                 "content": f.read()
                             })
                     except Exception as e:
