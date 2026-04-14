@@ -33,7 +33,8 @@ class ReadmeGenerator:
         Return ONLY the Markdown content for this section. Do not include introductory or concluding conversational text.
         """
         
-        return self.models.gemini_model("gemini-2.5-flash", prompt)
+        # return self.models.gemini_model("gemini-2.5-flash", prompt)
+        return self.models.get_nvidia_api_response(prompt)
 
     def generate_full_readme(self, output_filename="GENERATED_README.md"):
 

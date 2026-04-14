@@ -11,3 +11,6 @@ models = init_models.init_models()
 # print(models.list_gemini_models())
 print(vector_db.RAGDatabase(models).list_collections())
 vector_db.RAGDatabase(models).reset_database()
+
+result = models.get_nvidia_api_response("What's the capital of Karnataka? Let me know top 5 things of this place.")
+print(result)

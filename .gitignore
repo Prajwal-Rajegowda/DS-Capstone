@@ -1,6 +1,8 @@
 .env
 .python-version
+temp.json
 GENERATED_README.md
 chroma_db/
 __pycache__/
 temp_repo/
+.vscode/

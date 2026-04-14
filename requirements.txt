@@ -4,3 +4,4 @@ chromadb
 GitPython
 langchain-text-splitters
 pydantic
+streamlit

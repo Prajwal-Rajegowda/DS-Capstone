@@ -1,4 +1,6 @@
 import os
+import requests
+import json
 from google import genai as gemini
 from huggingface_hub import InferenceClient as huggingface
 from dotenv import load_dotenv
@@ -39,3 +41,26 @@ class init_models:
             contents=contents
         )
         return response.embeddings[0].values
+    
+    def get_nvidia_api_response(self, contents, model_name="google/gemma-3-27b-it"):
+        url = "https://integrate.api.nvidia.com/v1/chat/completions"
+        payload = {
+            "messages": [{ "role": "user", "content": contents}],
+            "model": model_name,
+            "max_tokens": 1024,
+            "stream": False,
+            "temperature": 0.2,
+            "top_p":0.7
+        }
+        headers = {
+            "authorization" : f"""Bearer {os.getenv("NVIDIA_API_KEY")}""",
+            "accept" : "application/json",
+            "content-type" : "application/json"
+        }
+
+        response = requests.post(url, json=payload, headers=headers)
+        responseObject = json.loads(response.text)
+        if "choices" in responseObject  : 
+            return responseObject["choices"][0]["message"]["content"]
+        else : 
+            return ""
