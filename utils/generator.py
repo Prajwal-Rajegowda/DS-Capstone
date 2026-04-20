@@ -30,20 +30,21 @@ class ReadmeGenerator:
         Repository Context:
         {context}
         
-        Return ONLY the Markdown content for this section. Do not include introductory or concluding conversational text.
+        Return ONLY the Markdown content for this section without a heading. Do not include introductory or concluding conversational text.
         """
         
         # return self.models.gemini_model("gemini-2.5-flash", prompt)
         return self.models.get_nvidia_api_response(prompt)
 
-    def generate_full_readme(self, output_filename="GENERATED_README.md"):
-
-        sections = {
-            "Project Title & Summary": "Determine the likely name of this project and write a 2-paragraph summary explaining its primary purpose and what the code does.",
-            "Features": "List the core features and functionalities of this codebase as bullet points.",
-            "Architecture & Technologies": "Describe the high-level architecture, main components, and any specific libraries or frameworks used.",
-            "Getting Started": "Provide instructions on how to run or initialize this project, including any entry point files (like main.py)."
-        }
+    def generate_full_readme(self, output_filename="GENERATED_README.md", sections=None):
+        
+        if sections is None:
+            sections = {
+                "Project Title & Summary": "Determine the likely name of this project and write a 2-paragraph summary explaining its primary purpose and what the code does.",
+                "Features": "List the core features and functionalities of this codebase as bullet points.",
+                "Architecture & Technologies": "Describe the high-level architecture, main components, and any specific libraries or frameworks used.",
+                "Getting Started": "Provide instructions on how to run or initialize this project, including any entry point files (like main.py)."
+            }
         
         full_readme = ""
         for title, instruction in sections.items():
