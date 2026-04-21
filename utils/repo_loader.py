@@ -14,7 +14,7 @@ class RepoLoader:
         Repo.clone_from(repo_url, self.clone_dir)
         print("Cloning complete.")
 
-    def get_code_files(self, allowed_extensions=('.py', '.md', '.txt', '.java', '.cpp', '.c')):
+    def get_code_files(self, allowed_extensions=('.py', '.md', '.java', '.cpp', '.c')):
         documents = []
         for root, _, files in os.walk(self.clone_dir):
             if '.git' in root:
